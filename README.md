@@ -52,7 +52,6 @@ Your design should consider data types, properties, and methods for each of the 
 - Can you identify where you use Abstraction, Polymorphism, Inheritance, and Encapsulation in your designs?
     A:  - Search feature: only show relevant data
 
-
     P:  - Create/Edit/Remove blogpost/recipe, different constructors depending on which object type passed in
 
     I:  - Nowhere yet
