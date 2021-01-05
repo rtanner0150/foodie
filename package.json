@@ -1,0 +1,20 @@
+{
+  "name": "foodie",
+  "version": "1.0.0",
+  "description": "SKC group project creating recipe-sharing app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtanner0150/foodie.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rtanner0150/foodie/issues"
+  },
+  "homepage": "https://github.com/rtanner0150/foodie#readme"
+}
