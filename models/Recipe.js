@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+let ingredientSchema = require('./Ingredient.js').schema;
 
 const recipeSchema = new Schema({
     title : String, 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+let savedRecipeSchema = require('./SavedRecipe.js').schema;
 
 const userSchema = new Schema ({
     username : String, 
