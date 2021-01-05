@@ -3,7 +3,7 @@ const connectionString = 'mongodb+srv://foodieDB:OnionsAndGarlic1@foodiecluster.
 const express = require('express');
 const app = express();
 const path = require('path');
-const bodyParset = require('body-parser');
+const bodyParser = require('body-parser');
 
 let port = process.env.PORT || 3000;
 

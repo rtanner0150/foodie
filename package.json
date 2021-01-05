@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/rtanner0150/foodie/issues"
   },
-  "homepage": "https://github.com/rtanner0150/foodie#readme"
+  "homepage": "https://github.com/rtanner0150/foodie#readme",
+  "dependencies": {
+    "nodemon": "^2.0.6"
+  }
 }
