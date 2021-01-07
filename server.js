@@ -9,6 +9,7 @@ const User = require('./models/User.js');
 const Ingredient = require('./models/Ingredient.js');
 const SavedRecipe = require('./models/SavedRecipe.js');
 const { allowedNodeEnvironmentFlags } = require('process');
+const { createCipher } = require('crypto');
 
 let port = process.env.PORT || 3000;
 
@@ -47,6 +48,44 @@ app.post('/recipes', (request, response) => {
         response.sendStatus(200);
     })
 });
+//delete recipe by id
+app.delete('/recipes/:id', async (request, response) => {
+    Recipe.deleteOne({_id: request.params.id})
+    .then(() => response.sendStatus(204))
+    .catch(() => response.sendStatus(404));
+});
+//update recipe by id
+app.put('/recipes/:id', async(request, response) => {
+    let updatedRecipe = new Recipe(request.body);
+    Recipe.findOne({_id: request.params.id}).exec((err, recipe) => {
+        if (err) return console.error(err);
+        recipe.title = updatedRecipe.title;
+        recipe.ingredients = updatedRecipe.ingredients;
+        recipe.prep_cook_time = updatedRecipe.prep_cook_time;
+        recipe.directions = updatedRecipe.directions;
+        recipe.picture = updatedRecipe.picture;
+        recipe.video = updatedRecipe.video;
+        recipe.quality_rating = updatedRecipe.quality_rating;
+        recipe.difficulty_rating = updatedRecipe.difficulty_rating;
+        try{
+            recipe.save();
+            response.sendStatus(200);
+        } catch{
+            response.sendStatus(500);
+        }
+    })
+});
+
+/*
+title : {type: String, required: true}, 
+    ingredients : {type: [String], required: true},
+    prep_cook_time : {type: String, required: true},
+    directions : {type: String, required: true}, 
+    picture : {type: String, default: null},
+    video : {type: String, default: null},
+    quality_rating : {type: Number, default: null},
+    difficulty_rating : {type: Number, default: null}
+*/
 
 //USERS
 //get all users
