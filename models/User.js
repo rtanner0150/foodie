@@ -9,6 +9,9 @@ const userSchema = new Schema ({
     profile_pic : String, 
     saved_recipes : [savedRecipeSchema]
     /* karma_system : Number */
+},
+{
+    timestamps: true
 });
 
 module.exports = mongoose.model('User', userSchema);

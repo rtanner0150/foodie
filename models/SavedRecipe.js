@@ -7,6 +7,9 @@ const savedRecipeSchema = new Schema({
         ref: 'Recipe'
     },
     favorited: Boolean
+},
+{
+    timestamps: true
 });
 
 module.exports = mongoose.model('SavedRecipe', savedRecipeSchema);

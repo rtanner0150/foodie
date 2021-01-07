@@ -12,6 +12,9 @@ const recipeSchema = new Schema({
     quality_rating : Number,
     difficulty_rating : Number
     /* comments : [commentSchema] */
+},
+{
+    timestamps: true
 }); 
 
 module.exports = mongoose.model('Recipe', recipeSchema);
