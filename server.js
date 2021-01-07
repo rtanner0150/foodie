@@ -8,6 +8,7 @@ const Recipe = require('./models/Recipe.js');
 const User = require('./models/User.js');
 const Ingredient = require('./models/Ingredient.js');
 const SavedRecipe = require('./models/SavedRecipe.js');
+const { allowedNodeEnvironmentFlags } = require('process');
 
 let port = process.env.PORT || 3000;
 
@@ -33,6 +34,17 @@ app.get('/recipes', (request, response) => {
     Recipe.find((err, recipes) => {
         if (err) return console.error(err);
         response.send(recipes);
+    })
+});
+//create new recioe
+app.post('/recipes', (request, response) => {
+    let r = new Recipe(request.body);
+    r.save((err, r) => {
+        if (err){
+            response.sendStatus(500);
+            return console.error(err);
+        }
+        response.sendStatus(200);
     })
 });
 
