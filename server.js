@@ -27,6 +27,8 @@ app.listen(port, () => {
     console.log('The Express server is running at port ' + port);
 });
 
+//RECIPES
+//get all recipes
 app.get('/recipes', (request, response) => {
     Recipe.find((err, recipes) => {
         if (err) return console.error(err);
@@ -34,6 +36,8 @@ app.get('/recipes', (request, response) => {
     })
 });
 
+//USERS
+//get all users
 app.get('/users', (request, response) => {
     User.find((err, users) => {
         if (err) return console.error(err);
@@ -41,6 +45,8 @@ app.get('/users', (request, response) => {
     })
 });
 
+//INGREDIENTS
+//get all ingredients
 app.get('/ingredients', (request, response) => {
     Ingredient.find((err, ingredients) => {
         if (err) return console.error(err);
@@ -48,9 +54,11 @@ app.get('/ingredients', (request, response) => {
     })
 });
 
-app.get('/savedRecipes', (request, response) => {
-    SavedRecipe.find((err, sr) => {
-        if (err) return console.error(err);
-        response.send(sr);
-    })
-});
+//SAVED RECIPES
+//get all saved recipes for a specific user
+// app.get('/savedRecipes', (request, response) => {
+//     SavedRecipe.find((err, sr) => {
+//         if (err) return console.error(err);
+//         response.send(sr);
+//     })
+// });
