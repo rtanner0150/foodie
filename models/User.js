@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 let savedRecipeSchema = require('./SavedRecipe.js').schema;
 
 const userSchema = new Schema ({
-    username : String, 
-    password : String, 
-    email : String, 
-    profile_pic : String, 
-    saved_recipes : [savedRecipeSchema]
+    username : {type: String, required: true}, 
+    password : {type: String, required: true}, 
+    email : {type: String, required: true}, 
+    profile_pic : {type: String, default: null}, 
+    saved_recipes : {type: [savedRecipeSchema], default: null}
     /* karma_system : Number */
 },
 {

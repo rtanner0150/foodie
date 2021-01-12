@@ -42,10 +42,10 @@ app.post('/recipes', (request, response) => {
     let r = new Recipe(request.body);
     r.save((err, r) => {
         if (err){
-            response.sendStatus(500);
+            response.sendStatus(409);
             return console.error(err);
         }
-        response.sendStatus(200);
+        response.sendStatus(201);
     })
 });
 //delete recipe by id
@@ -76,17 +76,6 @@ app.put('/recipes/:id', async(request, response) => {
     })
 });
 
-/*
-title : {type: String, required: true}, 
-    ingredients : {type: [String], required: true},
-    prep_cook_time : {type: String, required: true},
-    directions : {type: String, required: true}, 
-    picture : {type: String, default: null},
-    video : {type: String, default: null},
-    quality_rating : {type: Number, default: null},
-    difficulty_rating : {type: Number, default: null}
-*/
-
 //USERS
 //get all users
 app.get('/users', (request, response) => {
@@ -95,6 +84,16 @@ app.get('/users', (request, response) => {
         response.send(users);
     })
 });
+app.post('/users', (request, response) => {
+    let u = new User(request.body);
+    u.save((err, u) => {
+        if (err){
+            response.sendStatus(409);
+            return console.error(err);
+        }
+        response.sendStatus(201);
+    })
+})
 
 //INGREDIENTS
 //get all ingredients
