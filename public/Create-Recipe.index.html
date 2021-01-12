@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">   
   <link rel="stylesheet" href="/styles.css">
@@ -29,20 +30,61 @@
         <br>
         <a href="#create">create</a>
       </div>
+      <br>
+      <div class="container createRecipe">
+        <h2>create a recipe</h2>
+        <form>
+            <div class="row">
+                <div class="col-3">
+                    <label for="recipeTitle">recipe title:</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="recipeTitle" name="recipeTitle" placeholder="recipe title"><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label for="times">prep and cooking time:</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="times" name="times" value="prep time: cook time:"> <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label for="ingredient">ingredient(s):</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="ingredient" name="ingredient" placeholder="ex: 1 cup of strawberries"><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label for="ingredient">directions:</label>
+                </div>
+                <div class="col-9">
+                    <div id="editor">
+                     <p>Step 1: preheat oven to 350 degrees</p>
+                        <p>Step 2: prepare dry ingredients</p>
+                            <p><br></p>
+                    </div>                    
+                </div>
+            </div>
 
- <!-- This is where the rest of the code goes -->
- <div class="container createRecipe">
-    <form>
-        <label for="recipeTitle">recipe title:</label>
-        <input type="text" id="recipeTitle" name="recipeTitle" placeholder="recipe title"><br>
-        <label for="times">prep and cooking time:</label>
-        <input type="text" id="times" name="times" value="prep time: cook time:"> <br>
-        <label for="ingredient">ingredient:</label>
-        <input type="text" id="ingredient" name="ingredient" placeholder="ex: 1 cup of strawberries"><br>
-        <label for="directions">directions</label>
-        <textarea id="directions" name="directions" placeholder="cook strawberries for 30 minutes on low"> </textarea>
-      </form>
- </div>
+            <button type="button">Submit</button>
+        </form>
+     </div>
 
+
+
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+<script>
+  var quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+</script>
 </body>
 </html>
