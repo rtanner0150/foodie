@@ -4,6 +4,10 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
+const Recipe = require('./models/Recipe.js');
+const User = require('./models/User.js');
+const Ingredient = require('./models/Ingredient.js');
+const SavedRecipe = require('./models/SavedRecipe.js');
 
 let port = process.env.PORT || 3000;
 
@@ -23,3 +27,38 @@ app.listen(port, () => {
     console.log('The Express server is running at port ' + port);
 });
 
+//RECIPES
+//get all recipes
+app.get('/recipes', (request, response) => {
+    Recipe.find((err, recipes) => {
+        if (err) return console.error(err);
+        response.send(recipes);
+    })
+});
+
+//USERS
+//get all users
+app.get('/users', (request, response) => {
+    User.find((err, users) => {
+        if (err) return console.error(err);
+        response.send(users);
+    })
+});
+
+//INGREDIENTS
+//get all ingredients
+app.get('/ingredients', (request, response) => {
+    Ingredient.find((err, ingredients) => {
+        if (err) return console.error(err);
+        response.send(ingredients);
+    })
+});
+
+//SAVED RECIPES
+//get all saved recipes for a specific user
+// app.get('/savedRecipes', (request, response) => {
+//     SavedRecipe.find((err, sr) => {
+//         if (err) return console.error(err);
+//         response.send(sr);
+//     })
+// });
