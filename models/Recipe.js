@@ -4,7 +4,7 @@ let ingredientSchema = require('./Ingredient.js').schema;
 
 const recipeSchema = new Schema({
     title : {type: String, required: true}, 
-    ingredients : {type: [String], required: true}, /* a schema inside a schema */
+    ingredients : {type: [ingredientSchema], required: true}, /* a schema inside a schema */
     prep_cook_time : {type: String, required: true},
     directions : {type: String, required: true}, 
     picture : {type: String, default: null},
