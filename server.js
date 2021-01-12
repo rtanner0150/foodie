@@ -84,6 +84,7 @@ app.get('/users', (request, response) => {
         response.send(users);
     })
 });
+//create new user
 app.post('/users', (request, response) => {
     let u = new User(request.body);
     u.save((err, u) => {
@@ -93,7 +94,24 @@ app.post('/users', (request, response) => {
         }
         response.sendStatus(201);
     })
-})
+});
+app.put('/users/:id', (request, response) => {
+    let updatedUser = new User(request.body);
+    User.findOne({_id: request.params.id}).exec((err, user) => {
+        if (err) return console.error(err);
+        user.username = updatedUser.username;
+        user.password = updatedUser.password;
+        user.email = updatedUser.email;
+        user.profile_pic = updatedUser.profile_pic;
+        user.saved_recipes = updatedUser.saved_recipes;
+        try{
+            user.save();
+            response.sendStatus(200);
+        } catch{
+            response.sendStatus(500);
+        }
+    })
+});
 
 //INGREDIENTS
 //get all ingredients
