@@ -121,47 +121,22 @@ app.get('/users/:id', (request, response) => {
     })
 })
 
-//INGREDIENTS
-//get all ingredients
-// app.get('/ingredients', (request, response) => {
-//     Ingredient.find((err, ingredients) => {
-//         if (err) return console.error(err);
-//         response.send(ingredients);
-//     })
-// });
-
-//SAVED RECIPES
-//get all saved recipes for a specific user
-// app.get('/savedRecipes', (request, response) => {
-//     SavedRecipe.find((err, sr) => {
-//         if (err) return console.error(err);
-//         response.send(sr);
-//     })
-// });
-
-app.get('/users/:id/recipes', async (request, response) => {
-    console.log('request.params.id: ' + request.params.id);
-
-    let recipes = [];
-    await User.findOne({_id: request.params.id}).exec((err, user) => {
-        if (err) return console.error(err);
-        console.log('user: ' + user);
-        
-        user.saved_recipes.forEach(async (item) => {
-            console.log('item.recipe_id: ' + item.recipe_id);
-            //recipeIds.push(item.recipe_id);
-            await Recipe.findOne({_id: item.recipe_id}).exec((err, recipe) => {
-                if (err) return console.error(err);
-                console.log('recipe: ' + recipe);
-                recipes.push(recipe);
-            })
+//get saved recipes for specific user
+app.get('/users/:id/recipes', (request, response) => {
+    
+    User.findOne({_id: request.params.id}).exec().then(user => {
+        findSavedRecipes(user).then(recipes => {
+            response.send(recipes);
         });
+    })
 
-    }).then(() => {
-        console.log('recipes: ' + recipes);
-        response.send(recipes)
-    });
-    
-    //response.send(recipes);
-    
+    async function findSavedRecipes(user){
+        let recipes = [];
+        for (let i = 0; i < user.saved_recipes.length; i++){
+            await Recipe.findOne({_id: user.saved_recipes[i].recipe_id}).exec().then(recipe => {
+                recipes.push(recipe)
+            });
+        }
+        return recipes;
+    }
 })
