@@ -95,6 +95,7 @@ app.post('/users', (request, response) => {
         response.sendStatus(201);
     })
 });
+//update user by id
 app.put('/users/:id', (request, response) => {
     let updatedUser = new User(request.body);
     User.findOne({_id: request.params.id}).exec((err, user) => {
@@ -112,15 +113,22 @@ app.put('/users/:id', (request, response) => {
         }
     })
 });
+//get specific user by id
+app.get('/users/:id', (request, response) => {
+    User.findOne({_id: request.params.id}).exec((err, user) => {
+        if (err) return console.error(err);
+        response.send(user);
+    })
+})
 
 //INGREDIENTS
 //get all ingredients
-app.get('/ingredients', (request, response) => {
-    Ingredient.find((err, ingredients) => {
-        if (err) return console.error(err);
-        response.send(ingredients);
-    })
-});
+// app.get('/ingredients', (request, response) => {
+//     Ingredient.find((err, ingredients) => {
+//         if (err) return console.error(err);
+//         response.send(ingredients);
+//     })
+// });
 
 //SAVED RECIPES
 //get all saved recipes for a specific user
@@ -130,3 +138,30 @@ app.get('/ingredients', (request, response) => {
 //         response.send(sr);
 //     })
 // });
+
+app.get('/users/:id/recipes', async (request, response) => {
+    console.log('request.params.id: ' + request.params.id);
+
+    let recipes = [];
+    await User.findOne({_id: request.params.id}).exec((err, user) => {
+        if (err) return console.error(err);
+        console.log('user: ' + user);
+        
+        user.saved_recipes.forEach(async (item) => {
+            console.log('item.recipe_id: ' + item.recipe_id);
+            //recipeIds.push(item.recipe_id);
+            await Recipe.findOne({_id: item.recipe_id}).exec((err, recipe) => {
+                if (err) return console.error(err);
+                console.log('recipe: ' + recipe);
+                recipes.push(recipe);
+            })
+        });
+
+    }).then(() => {
+        console.log('recipes: ' + recipes);
+        response.send(recipes)
+    });
+    
+    //response.send(recipes);
+    
+})
