@@ -33,6 +33,10 @@ body {
   display: block;
 }
 
+a {
+  color:#ffffff;
+}
+
 /* .sidenav a:hover {
   color: #f1f1f1;
 } */
@@ -60,6 +64,16 @@ body {
 .createRecipe h2 {
   text-align: center;
 }
+
+#add {
+  position: relative;
+}
+
+#add button {
+  position: absolute;
+  bottom: 0;
+}
+
 /* search bar */
 /* .sbx-custom {
   display: inline-block;
