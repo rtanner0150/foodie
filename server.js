@@ -95,6 +95,7 @@ app.post('/users', (request, response) => {
         response.sendStatus(201);
     })
 });
+//update user by id
 app.put('/users/:id', (request, response) => {
     let updatedUser = new User(request.body);
     User.findOne({_id: request.params.id}).exec((err, user) => {
