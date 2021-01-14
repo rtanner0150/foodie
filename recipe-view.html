@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>foodie</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">   
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+  <!--the main javascript file is below/change the file below for correct JS routing-->
+  <script src="/templateDraft.js"></script>
+</head>
+<body>
+    <div class="header">
+      <h1><a href="feed-main.html"><i class="fas fa-utensils"></i> foodie</a> </h1>
+    </div>
+    <div class="sidenav">
+      <a href="feed-main.html">feed</a>
+      <br>
+      <a href="search.html">search</a>
+      <br>
+      <a href="profile.html">profile</a>
+      <br>
+      <a href="pantry.html">pantry</a>
+      <br>
+      <a href="Create-Recipe.index.html">create</a>
+      <br>
+      <a href="login.html">login</a>
+    </div>
+
+
+      <!-- end of template code, rest of code goes below -->
+      <br> <br>
+<div class="container recipeView">
+      <h2>recipe title</h2>
+        <p>short description of recipe</p>
+        <p>prep time | cook time </p>
+        
+        <div class="tab">
+          <button class="tablinks" onclick="openTab(event, 'ingredient')">ingredients</button>
+          <button class="tablinks" onclick="openTab(event, 'directions')">directions</button>
+          <button class="tablinks" onclick="openTab(event, 'substitutions')">substitutions</button>
+            <button class="tablinks" onclick="openTab(event, 'story')">story</button>
+        </div>
+        
+        <div id="ingredient" class="tabcontent">
+          <h3>ingredients</h3>
+          <p>butter milk eggs</p>
+        </div>
+        
+        <div id="directions" class="tabcontent">
+          <h3>directions</h3>
+          <p>heat oven to 350 baby</p> 
+        </div>
+        
+        <div id="substitutions" class="tabcontent">
+          <h3>substitutions</h3>
+          <p>i am vegan, so i substitute applesauce for eggs</p>
+        </div>
+        
+        <div id="story" class="tabcontent">
+          <h3>story</h3>
+          <p>my dog likes pumpkin so i made a pumpkin pie</p>
+        </div>
+</div>        
+        <script>
+        function openTab(evt, cityName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(cityName).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+        </script>
+           
+
+        
+
+
+
+</body>
+</html>
