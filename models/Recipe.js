@@ -10,7 +10,12 @@ const recipeSchema = new Schema({
     picture : {type: String, default: null},
     video : {type: String, default: null},
     quality_rating : {type: Number, default: null},
-    difficulty_rating : {type: Number, default: null}
+    difficulty_rating : {type: Number, default: null},
+    summary : {type: String, required: true},
+    created_by : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
     /* comments : [commentSchema] */
 },
 {

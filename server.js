@@ -67,6 +67,7 @@ app.put('/recipes/:id', async(request, response) => {
         recipe.video = updatedRecipe.video;
         recipe.quality_rating = updatedRecipe.quality_rating;
         recipe.difficulty_rating = updatedRecipe.difficulty_rating;
+        recipe.summary = updatedRecipe.summary;
         try{
             recipe.save();
             response.sendStatus(200);

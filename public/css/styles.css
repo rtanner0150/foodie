@@ -247,3 +247,11 @@ a {
     opacity: 1;
   }
 } */
+
+.search-page{margin-top:20px;}
+.search-page h2{text-align:center; margin-bottom:30px;}
+.search-toggle{text-align:center;}
+.search-input{text-align:center; margin-top:20px;}
+.search-input .btn{color:#fff; background-color:#AD102F; border-color:#AD102F;}
+.search-input .btn:hover{background-color:#dc3545;}
+.search-input input{height:38px; vertical-align:middle;}

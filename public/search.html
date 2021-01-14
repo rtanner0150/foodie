@@ -7,13 +7,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">   
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
   <!--the main javascript file is below/change the file below for correct JS routing-->
-  <script src="/templateDraft.js"></script>
 </head>
 <body>
     <div class="header">
@@ -35,14 +34,26 @@
 
       <!-- end of template code, rest of code goes below -->
 
-<h2>
-    welcome to the <strong>search page,</strong> we are currently in the process of working on everything,
-     so please bear with us as we work out all of the kinks!
-</h2>
-<div>
-    <img src="img/pngfind.com-animal-png-442178.png" alt="bear">
-</div>
+      <div class="container search-page">
+          <h2>Search for Recipes</h2>
+          <div class="search-toggle btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-secondary active">
+                <input type="radio" name="search-toggle" id="title" value="title" checked> Search by Title
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="search-toggle" id="ingredients" value="title"> Search by Ingredients
+              </label>
+          </div>
+          <div class="search-input">
+              <input type="text" name="search-input" id="search-input" placeholder="Search conditions go here">
+              <button type="submit" class="btn" id="search-submit">Search</button>
+          </div>
+          <hr>
+          <div class="search-results" id="search-results">
+              <h3>Search Results</h3>
 
+          </div>
+      </div>
 <!-- 
 
     <div class="container card">
@@ -57,6 +68,9 @@
       </div>
 
  -->
+
+ <script src="js/data.js"></script>
+ <script src="js/search.js"></script>
 
 </body>
 </html>
