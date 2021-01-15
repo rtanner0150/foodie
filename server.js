@@ -68,6 +68,7 @@ app.put('/recipes/:id', async(request, response) => {
         recipe.quality_rating = updatedRecipe.quality_rating;
         recipe.difficulty_rating = updatedRecipe.difficulty_rating;
         recipe.summary = updatedRecipe.summary;
+        recipe.created_by = updatedRecipe.created_by;
         try{
             recipe.save();
             response.sendStatus(200);
