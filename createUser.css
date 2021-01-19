@@ -1,5 +1,8 @@
 * {box-sizing: border-box}
 
+.logh2{
+  margin-bottom: 50px
+}
 /* style the container */
 .container {
   position: relative;
@@ -83,7 +86,8 @@ input[type=submit]:hover {
   left: 50%;
   transform: translate(-50%);
   border: 2px solid #ddd;
-  height: 175px;
+  height: 155px;
+  margin-top:50px
 }
 
 /* text inside the vertical line */
