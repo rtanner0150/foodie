@@ -67,6 +67,8 @@ app.put('/recipes/:id', async(request, response) => {
         recipe.video = updatedRecipe.video;
         recipe.quality_rating = updatedRecipe.quality_rating;
         recipe.difficulty_rating = updatedRecipe.difficulty_rating;
+        recipe.summary = updatedRecipe.summary;
+        recipe.created_by = updatedRecipe.created_by;
         try{
             recipe.save();
             response.sendStatus(200);
@@ -75,6 +77,22 @@ app.put('/recipes/:id', async(request, response) => {
         }
     })
 });
+//search recipes by title
+app.get('/recipes/search_title/:query', (request, response) => {
+    var regex = new RegExp(request.params.query, 'gi');
+    Recipe.find({title: regex}, (err, recipes) => {
+        if (err) return console.error(err);
+        response.send(recipes);
+    })
+});
+//search recipes by ingredient
+app.get('/recipes/search_ingredient/:query', (request, response) => {
+    var regex = new RegExp(request.params.query, 'gi');
+    Recipe.find({'ingredients.name': regex}, (err, recipes) => {
+        if (err) return console.error(err);
+        response.send(recipes);
+    })
+})
 
 //USERS
 //get all users

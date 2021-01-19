@@ -73,40 +73,40 @@ a {
   position: absolute;
   bottom: 0;
 }
- .btn-info {
-   background-color: #59B7D3;
- }
+.btn-info {
+  background-color: #59B7D3;
+}
 .center-text {
-  text-align: center;
+ text-align: center;
 }
 
 .blackText {
-  color: #000000 
+ color: #000000 
 }
 
 /* tab-tab-tab-tab-tabs */
 /* Style the tab */
 .tab {
-  overflow: scroll;
-  border: 1px solid #ccc;
-  background-color: #477F90;
+ overflow: scroll;
+ border: 1px solid #ccc;
+ background-color: #477F90;
 }
 
 /* Style the buttons inside the tab */
 .tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
+ background-color: inherit;
+ float: left;
+ border: none;
+ outline: none;
+ cursor: pointer;
+ padding: 14px 16px;
+ transition: 0.3s;
+ font-size: 17px;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #C2FAFF;
+ background-color: #C2FAFF;
 }
 
 /* Create an active/current tablink class */
@@ -298,3 +298,11 @@ a {
     opacity: 1;
   }
 } */
+
+.search-page{margin-top:20px;}
+.search-page h2{text-align:center; margin-bottom:30px;}
+.search-toggle{text-align:center;}
+.search-input{text-align:center; margin-top:20px;}
+.search-input .btn{color:#fff; background-color:#AD102F; border-color:#AD102F;}
+.search-input .btn:hover{background-color:#dc3545;}
+.search-input input{height:38px; vertical-align:middle;}
