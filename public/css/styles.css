@@ -73,58 +73,6 @@ a {
   position: absolute;
   bottom: 0;
 }
-.btn-info {
-  background-color: #59B7D3;
-}
-.center-text {
- text-align: center;
-}
-
-.blackText {
- color: #000000 
-}
-
-/* tab-tab-tab-tab-tabs */
-/* Style the tab */
-.tab {
- overflow: scroll;
- border: 1px solid #ccc;
- background-color: #477F90;
-}
-
-/* Style the buttons inside the tab */
-.tab button {
- background-color: inherit;
- float: left;
- border: none;
- outline: none;
- cursor: pointer;
- padding: 14px 16px;
- transition: 0.3s;
- font-size: 17px;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
- background-color: #C2FAFF;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
- background-color: #59B7D3;
-}
-
-/* Style the tab content */
-.tabcontent {
- display: none;
- padding: 6px 12px;
- border: 1px solid #ccc;
- border-top: none;
-}
-.recipeView {
- border: 1px solid #000000;
-
-}
 
 /* search bar */
 /* .sbx-custom {
