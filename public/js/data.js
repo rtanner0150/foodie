@@ -83,6 +83,9 @@ async function createRecipe(title, ingredients, times, directions, summary, imag
 //https://flaviocopes.com/file-upload-using-ajax/
 async function handleImageUpload(imageInput){
     const files = imageInput.files;
+    if (files.length === 0){
+        return null;
+    }
     const formData = new FormData();
     formData.append('image', files[0]);
 
