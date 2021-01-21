@@ -1,5 +1,5 @@
 let ingredientCount = 0;
-function addIngredient() {
+document.getElementById('addIngredient').addEventListener('click', () => {
   ingredientCount++;
   document.getElementById("add").innerHTML += `
   <div class="ingredientRow">
@@ -8,7 +8,7 @@ function addIngredient() {
     <input type="text" id="substitutions${ingredientCount}" name="substitutions" placeholder="12 oz of applesauce">
   </div>
   `;
-}
+});
 
 document.getElementById('create-recipe').addEventListener('click', () => {
   let title = document.getElementById('recipeTitle').value;
@@ -24,9 +24,13 @@ document.getElementById('create-recipe').addEventListener('click', () => {
     }
     ingredients.push(ingredient);
   }
-  createRecipe(title, ingredients, times, directions, summary).then((result) => {
-    console.log(result);
-  }).catch((error) => {
-    console.log(error);
+  handleImageUpload(document.getElementById('image')).then((imagePath) => {
+    console.log('imagePath: ' + imagePath);
+    createRecipe(title, ingredients, times, directions, summary, imagePath).then((result) => {
+      console.log(result);
+    }).catch((error) => {
+      console.log(error);
+    });
   });
+  
 });

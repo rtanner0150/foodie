@@ -8,6 +8,7 @@ const Recipe = require('./models/Recipe.js');
 const User = require('./models/User.js');
 const Ingredient = require('./models/Ingredient.js');
 const SavedRecipe = require('./models/SavedRecipe.js');
+const fileupload = require('express-fileupload');
 const { allowedNodeEnvironmentFlags } = require('process');
 const { createCipher } = require('crypto');
 
@@ -24,6 +25,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(fileupload())
 
 app.listen(port, () => {
     console.log('The Express server is running at port ' + port);
@@ -157,4 +159,26 @@ app.get('/users/:id/recipes', (request, response) => {
         }
         return recipes;
     }
+})
+
+//handle img upload
+app.post('/saveImage', (request, response) => {
+    const fileName = request.files.image.name;
+    const path = __dirname + '/public/img/upload/' + fileName;
+
+    request.files.image.mv(path, (error) => {
+        if (error) {
+            console.error(error);
+            response.writeHead(500, {
+                'Content-Type': 'application/json'
+            });
+            response.end(JSON.stringify({status: 'error', message: error}))
+            return;
+        }
+
+        response.writeHead(200, {
+            'Content-Type': 'application/json'
+        });
+        response.end(JSON.stringify({status: 'success', path: 'img/upload/' + fileName}))
+    })
 })
