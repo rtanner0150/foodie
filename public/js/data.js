@@ -79,6 +79,7 @@ async function createRecipe(title, ingredients, times, directions, summary, imag
     `;
 }
 
+//https://flaviocopes.com/file-upload-using-ajax/
 async function handleImageUpload(imageInput){
     const files = imageInput.files;
     const formData = new FormData();

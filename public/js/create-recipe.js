@@ -1,13 +1,14 @@
 let ingredientCount = 0;
 document.getElementById('addIngredient').addEventListener('click', () => {
+  console.log('click addIngredient');
   ingredientCount++;
-  document.getElementById("add").innerHTML += `
-  <div class="ingredientRow">
-    <input type="text" id="ingredient${ingredientCount}" name="ingredient" placeholder="eggs">
+  let ingRow = document.createElement('div');
+  ingRow.setAttribute('class', 'ingredientRow');
+  ingRow.setAttribute('id', 'ingRow' + ingredientCount);
+  document.getElementById('add').append(ingRow);
+  ingRow.innerHTML = `<input type="text" id="ingredient${ingredientCount}" name="ingredient" placeholder="eggs">
     <input type="text" id="amount${ingredientCount}" name="amount" placeholder="2 large">
-    <input type="text" id="substitutions${ingredientCount}" name="substitutions" placeholder="12 oz of applesauce">
-  </div>
-  `;
+    <input type="text" id="substitutions${ingredientCount}" name="substitutions" placeholder="12 oz of applesauce">`;
 });
 
 document.getElementById('create-recipe').addEventListener('click', () => {
