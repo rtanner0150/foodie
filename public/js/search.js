@@ -3,29 +3,44 @@ document.getElementById('search-submit').addEventListener('click', () => {
     let searchResultsContainer = document.getElementById('search-results');
     searchResultsContainer.innerHTML = `<h3>Search Results</h3>`;
     let selected = document.querySelector('.search-toggle .active input').value;
+    let searchOn;
     if (selected === 'title'){
-        searchRecipesByTitle(searchQuery).then((recipes) => {
-            recipes.forEach(recipe => {
-                getSpecificUser(recipe.created_by).then((user) => {
-                    let createdAt = new Date(recipe.createdAt);
-                    console.log(createdAt);
-                    searchResultsContainer.innerHTML += createSearchResults(recipe.title, recipe.summary, user.username, createdAt.toDateString());
-                })
-                
-            })
-        })
+        searchOn = 'title';
     } else if (selected === 'ingredients'){
-        searchRecipesByIngredient(searchQuery).then((recipes) => {
-            recipes.forEach(recipe => {
-                getSpecificUser(recipe.created_by).then((user) => {
-                    let createdAt = new Date(recipe.createdAt);
-                    console.log(createdAt);
-                    searchResultsContainer.innerHTML += createSearchResults(recipe.title, recipe.summary, user.username, createdAt.toDateString());
-                })
-                
+        searchOn = 'ingredients.name'
+    }
+    searchRecipes(searchQuery, searchOn).then((recipes) => {
+        recipes.forEach(recipe => {
+            getSpecificUser(recipe.created_by).then((user) => {
+                let createdAt = new Date(recipe.createdAt);
+                console.log(createdAt);
+                searchResultsContainer.innerHTML += createSearchResults(recipe.title, recipe.summary, user.username, createdAt.toDateString());
             })
         })
-    }
+    })
+    // if (selected === 'title'){
+    //     searchRecipesByTitle(searchQuery).then((recipes) => {
+    //         recipes.forEach(recipe => {
+    //             getSpecificUser(recipe.created_by).then((user) => {
+    //                 let createdAt = new Date(recipe.createdAt);
+    //                 console.log(createdAt);
+    //                 searchResultsContainer.innerHTML += createSearchResults(recipe.title, recipe.summary, user.username, createdAt.toDateString());
+    //             })
+                
+    //         })
+    //     })
+    // } else if (selected === 'ingredients'){
+    //     searchRecipesByIngredient(searchQuery).then((recipes) => {
+    //         recipes.forEach(recipe => {
+    //             getSpecificUser(recipe.created_by).then((user) => {
+    //                 let createdAt = new Date(recipe.createdAt);
+    //                 console.log(createdAt);
+    //                 searchResultsContainer.innerHTML += createSearchResults(recipe.title, recipe.summary, user.username, createdAt.toDateString());
+    //             })
+                
+    //         })
+    //     })
+    // }
     
 });
 

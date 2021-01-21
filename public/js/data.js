@@ -26,13 +26,13 @@ async function getSpecificUser(id){
     return body;
 }
 
-async function searchRecipesByTitle(query){
+async function searchRecipes(query, on){
     let requestOptions = {
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
     }
     
-    const response = await fetch('/recipes/search_title/' + query, requestOptions);
+    const response = await fetch('/recipes/search/' + on + '/' + query, requestOptions);
     const body = await response.json();
     if (response.status != 200){
         throw Error(body.message);
@@ -40,19 +40,33 @@ async function searchRecipesByTitle(query){
     return body;
 }
 
-async function searchRecipesByIngredient(query){
-    let requestOptions = {
-        method: 'GET',
-        headers: {'Content-Type': 'application/json'}
-    }
+// async function searchRecipesByTitle(query){
+//     let requestOptions = {
+//         method: 'GET',
+//         headers: {'Content-Type': 'application/json'}
+//     }
     
-    const response = await fetch('/recipes/search_ingredient/' + query, requestOptions);
-    const body = await response.json();
-    if (response.status != 200){
-        throw Error(body.message);
-    }
-    return body;
-}
+//     const response = await fetch('/recipes/search_title/' + query, requestOptions);
+//     const body = await response.json();
+//     if (response.status != 200){
+//         throw Error(body.message);
+//     }
+//     return body;
+// }
+
+// async function searchRecipesByIngredient(query){
+//     let requestOptions = {
+//         method: 'GET',
+//         headers: {'Content-Type': 'application/json'}
+//     }
+    
+//     const response = await fetch('/recipes/search_ingredient/' + query, requestOptions);
+//     const body = await response.json();
+//     if (response.status != 200){
+//         throw Error(body.message);
+//     }
+//     return body;
+// }
 
 async function createRecipe(title, ingredients, times, directions, summary, image, tags){
     let recipe = {
