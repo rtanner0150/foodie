@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">   
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -37,37 +37,41 @@
       <!-- end of template code, rest of code goes below -->
       <br> <br>
 <div class="container recipeView">
-      <h2>recipe title</h2>
-        <p>short description of recipe</p>
-        <p>prep time | cook time </p>
+      <br>
+   <h1>[recipe title]</h1>
+        <p>[short description of recipe]</p>
+        <p>[prep time | cook time]</p>
         
         <div class="tab">
           <button class="tablinks" id="activeTab" onclick="openTab(event, 'ingredient')">ingredients</button>
           <button class="tablinks" onclick="openTab(event, 'directions')">directions</button>
           <button class="tablinks" onclick="openTab(event, 'substitutions')">substitutions</button>
-            <button class="tablinks" onclick="openTab(event, 'story')">story</button>
+          <!-- <button class="tablinks" onclick="openTab(event, 'story')">story</button> -->
         </div>
         
         <div id="ingredient" class="tabcontent">
           <h3>ingredients</h3>
-          <p>butter milk eggs</p>
+          <p>[ingredients go here]</p>
         </div>
         
         <div id="directions" class="tabcontent">
           <h3>directions</h3>
-          <p>heat oven to 350 baby</p> 
+          <p>[directions go here]</p> 
         </div>
         
         <div id="substitutions" class="tabcontent">
           <h3>substitutions</h3>
-          <p>i am vegan, so i substitute applesauce for eggs</p>
+          <p>[substitutions go here]</p>
         </div>
         
-        <div id="story" class="tabcontent">
+        <!-- <div id="story" class="tabcontent">
           <h3>story</h3>
           <p>my dog likes pumpkin so i made a pumpkin pie</p>
-        </div>
+        </div> -->
+        <br>
 </div>        
+        
+        
         <script>
         function openTab(evt, tabTitle) {
           var i, tabcontent, tablinks;

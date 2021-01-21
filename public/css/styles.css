@@ -89,7 +89,8 @@ a {
 .tab {
  overflow: scroll;
  border: 1px solid #ccc;
- background-color: #477F90;
+ background-color: #5c9bae;
+ font-weight: bold;
 }
 
 /* Style the buttons inside the tab */
@@ -100,13 +101,13 @@ a {
  outline: none;
  cursor: pointer;
  padding: 14px 16px;
- transition: 0.3s;
  font-size: 17px;
+ font-weight: 500;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
- background-color: #C2FAFF;
+ background-color: #83b3c2;
 }
 
 /* Create an active/current tablink class */
@@ -123,7 +124,14 @@ a {
 }
 .recipeView {
   border: 1px solid #000000;
+}
 
+.recipeView.h1 {
+  font-family: 'Poppins', sans-serif;
+}
+
+.tabcontent.h3 {
+  font-family: 'Poppins', sans-serif;
 }
 /* search bar */
 /* .sbx-custom {
