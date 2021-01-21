@@ -1,7 +1,8 @@
+let searchResultsContainer = document.getElementById('search-results');
+searchResultsContainer.innerHTML = `<h3>Search Results</h3>`;
+
 document.getElementById('search-submit').addEventListener('click', () => {
     let searchQuery = document.getElementById('search-input').value;
-    let searchResultsContainer = document.getElementById('search-results');
-    searchResultsContainer.innerHTML = `<h3>Search Results</h3>`;
     let selected = document.querySelector('.search-toggle .active input').value;
     let searchOn = selected;
     if (selected === 'ingredients'){
@@ -32,3 +33,20 @@ function createSearchResults(title, summary, username, date){
     </div>
     `
 }
+
+//pull up tags search on window load if tags query param exists
+window.addEventListener('load', event => {
+    const urlParams = new URLSearchParams(window.location.search);
+    let tagsQuery = urlParams.get('tags');
+    console.log('tagsQuery: ' + tagsQuery);
+    if (tagsQuery !== null){
+    searchRecipes(tagsQuery, 'tags').then((recipes) => {
+        recipes.forEach(recipe => {
+            getSpecificUser(recipe.created_by).then((user) => {
+                let createdAt = new Date(recipe.createdAt);
+                searchResultsContainer.innerHTML += createSearchResults(recipe.title, recipe.summary, user.username, createdAt.toDateString());
+            })
+        })
+    })
+    }
+})
