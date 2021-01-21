@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/rtanner0150/foodie#readme",
   "dependencies": {
+    "express-fileupload": "^1.2.1",
     "nodemon": "^2.0.6"
   }
 }
