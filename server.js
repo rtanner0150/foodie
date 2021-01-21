@@ -161,7 +161,7 @@ app.get('/users/:id/recipes', (request, response) => {
     }
 })
 
-//handle img upload
+//handle img upload: https://flaviocopes.com/file-upload-using-ajax/
 app.post('/saveImage', (request, response) => {
     const fileName = request.files.image.name;
     const path = __dirname + '/public/img/upload/' + fileName;
