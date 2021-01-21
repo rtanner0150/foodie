@@ -54,7 +54,7 @@ async function searchRecipesByIngredient(query){
     return body;
 }
 
-async function createRecipe(title, ingredients, times, directions, summary, image){
+async function createRecipe(title, ingredients, times, directions, summary, image, tags){
     let recipe = {
         title: title,
         ingredients: ingredients,
@@ -62,6 +62,7 @@ async function createRecipe(title, ingredients, times, directions, summary, imag
         directions: directions,
         summary: summary,
         picture: image,
+        tags: tags,
         created_by: '6000c2eed43991ec6f6e2487'
     }
     let requestOptions = {

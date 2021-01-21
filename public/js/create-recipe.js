@@ -16,6 +16,7 @@ document.getElementById('create-recipe').addEventListener('click', () => {
   let times = document.getElementById('times').value;
   let summary = document.getElementById('summary').value;
   let directions = document.querySelector('#editor .ql-editor').innerHTML;
+  let tags = document.getElementById('tags').value;
   let ingredients = [];
   for (let i = 0; i < document.querySelectorAll('.ingredientRow').length; i++){
     let ingredient = {
@@ -27,7 +28,7 @@ document.getElementById('create-recipe').addEventListener('click', () => {
   }
   handleImageUpload(document.getElementById('image')).then((imagePath) => {
     console.log('imagePath: ' + imagePath);
-    createRecipe(title, ingredients, times, directions, summary, imagePath).then((result) => {
+    createRecipe(title, ingredients, times, directions, summary, imagePath, tags).then((result) => {
       console.log(result);
     }).catch((error) => {
       console.log(error);
