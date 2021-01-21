@@ -13,8 +13,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-  <script src="/create-recipe.js"></script>
-  <script src="/templateDraft.js"></script>
 </head>
 <body>
     <div class="header">
@@ -36,7 +34,6 @@
       <br>
       <div class="container createRecipe">
         <h2>create a recipe</h2>
-        <form>
             <div class="row">
                 <div class="col-3">
                     <label for="recipeTitle">recipe title:</label>
@@ -50,22 +47,41 @@
                     <label for="times">prep and cooking time:</label>
                 </div>
                 <div class="col-9">
-                    <input type="text" id="times" name="times" value="[prep time: | cook time: ]"> <br>
+                    <input type="text" id="times" name="times" placeholder="[prep time: | cook time: ]"> <br>
                 </div>
             </div>
             <div class="row">
                 <div class="col-3">
-                    <label for="ingredient">ingredient(s):</label>
+                    <label for="ingredient0">ingredient(s):</label>
                 </div>
                 <div class="col-9" id="add">
-                    <input type="text" id="ingredient" name="ingredient" placeholder="eggs">
-                    <input type="text" id="amount" name="amount" placeholder="2 large">
-                    <input type="text" id="substitutions" name="substitutions" placeholder="12 oz of applesauce"> <button type="submit" onclick="addIngredient()">+</button><br>
+                    <div class="ingredientRow" id="ingRow0">
+                        <input type="text" id="ingredient0" name="ingredient" placeholder="eggs">
+                        <input type="text" id="amount0" name="amount" placeholder="2 large">
+                        <input type="text" id="substitutions0" name="substitutions" placeholder="12 oz of applesauce"> 
+                        <button type="button" id="addIngredient">+</button><br>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-3">
-                    <label for="ingredient">directions:</label>
+                    <label for="summary">summary:</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="summary" name="summary" placeholder="summary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label for="image">image:</label>
+                </div>
+                <div class="col-9">
+                    <input type="file" id="image" name="image">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>directions:</label>
                 </div>
                 <div class="col-9">
                     <div id="editor">
@@ -76,8 +92,7 @@
                 </div>
             </div>
 
-            <button type="button">Submit</button>
-        </form>
+            <button type="submit" id="create-recipe">Submit</button>
      </div>
 
 
@@ -93,5 +108,8 @@
     theme: 'snow'
   });
 </script>
+
+<script src="js/data.js"></script>
+<script src="js/create-recipe.js"></script>
 </body>
 </html>
