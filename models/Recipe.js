@@ -15,7 +15,8 @@ const recipeSchema = new Schema({
     created_by : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    tags : {type: String, default: null}
     /* comments : [commentSchema] */
 },
 {

@@ -79,22 +79,25 @@ app.put('/recipes/:id', async(request, response) => {
         }
     })
 });
-//search recipes by title
-app.get('/recipes/search_title/:query', (request, response) => {
+//search recipes for given query on given category
+app.get('/recipes/search/:on/:query', (request, response) => {
     var regex = new RegExp(request.params.query, 'gi');
-    Recipe.find({title: regex}, (err, recipes) => {
+    let prop = request.params.on;
+    let query = {};
+    query[prop] = regex;
+    Recipe.find(query, (err, recipes) => {
         if (err) return console.error(err);
         response.send(recipes);
     })
 });
 //search recipes by ingredient
-app.get('/recipes/search_ingredient/:query', (request, response) => {
-    var regex = new RegExp(request.params.query, 'gi');
-    Recipe.find({'ingredients.name': regex}, (err, recipes) => {
-        if (err) return console.error(err);
-        response.send(recipes);
-    })
-})
+// app.get('/recipes/search_ingredient/:query', (request, response) => {
+//     var regex = new RegExp(request.params.query, 'gi');
+//     Recipe.find({'ingredients.name': regex}, (err, recipes) => {
+//         if (err) return console.error(err);
+//         response.send(recipes);
+//     })
+// })
 
 //USERS
 //get all users

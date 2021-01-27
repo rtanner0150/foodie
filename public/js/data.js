@@ -26,13 +26,13 @@ async function getSpecificUser(id){
     return body;
 }
 
-async function searchRecipesByTitle(query){
+async function searchRecipes(query, on){
     let requestOptions = {
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
     }
     
-    const response = await fetch('/recipes/search_title/' + query, requestOptions);
+    const response = await fetch('/recipes/search/' + on + '/' + query, requestOptions);
     const body = await response.json();
     if (response.status != 200){
         throw Error(body.message);
@@ -40,21 +40,7 @@ async function searchRecipesByTitle(query){
     return body;
 }
 
-async function searchRecipesByIngredient(query){
-    let requestOptions = {
-        method: 'GET',
-        headers: {'Content-Type': 'application/json'}
-    }
-    
-    const response = await fetch('/recipes/search_ingredient/' + query, requestOptions);
-    const body = await response.json();
-    if (response.status != 200){
-        throw Error(body.message);
-    }
-    return body;
-}
-
-async function createRecipe(title, ingredients, times, directions, summary, image){
+async function createRecipe(title, ingredients, times, directions, summary, image, tags){
     let recipe = {
         title: title,
         ingredients: ingredients,
@@ -62,6 +48,7 @@ async function createRecipe(title, ingredients, times, directions, summary, imag
         directions: directions,
         summary: summary,
         picture: image,
+        tags: tags,
         created_by: '6000c2eed43991ec6f6e2487'
     }
     let requestOptions = {
@@ -82,6 +69,9 @@ async function createRecipe(title, ingredients, times, directions, summary, imag
 //https://flaviocopes.com/file-upload-using-ajax/
 async function handleImageUpload(imageInput){
     const files = imageInput.files;
+    if (files.length === 0){
+        return null;
+    }
     const formData = new FormData();
     formData.append('image', files[0]);
 
