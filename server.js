@@ -39,6 +39,17 @@ app.get('/recipes', (request, response) => {
         response.send(recipes);
     })
 });
+//get recipe by id
+app.get('/recipes/:id', (request, response) => {
+    Recipe.findOne({_id: request.params.id}).exec((err, recipe) => {
+        if (err) {
+            response.sendStatus(404);
+            return console.error(err);
+        }
+        response.statusCode = 200;
+        response.send(recipe);
+    })
+})
 //create new recioe
 app.post('/recipes', (request, response) => {
     let r = new Recipe(request.body);
@@ -67,10 +78,11 @@ app.put('/recipes/:id', async(request, response) => {
         recipe.directions = updatedRecipe.directions;
         recipe.picture = updatedRecipe.picture;
         recipe.video = updatedRecipe.video;
-        recipe.quality_rating = updatedRecipe.quality_rating;
-        recipe.difficulty_rating = updatedRecipe.difficulty_rating;
+        //recipe.quality_rating = updatedRecipe.quality_rating;
+        //recipe.difficulty_rating = updatedRecipe.difficulty_rating;
         recipe.summary = updatedRecipe.summary;
-        recipe.created_by = updatedRecipe.created_by;
+        recipe.tags = updatedRecipe.tags;
+        //recipe.created_by = updatedRecipe.created_by;
         try{
             recipe.save();
             response.sendStatus(200);

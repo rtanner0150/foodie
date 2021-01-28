@@ -65,11 +65,11 @@ a {
   text-align: center;
 }
 
-#add {
+#ingredientWrapper {
   position: relative;
 }
 
-#add button {
+#ingredientWrapper button {
   position: absolute;
   bottom: 0;
 }
