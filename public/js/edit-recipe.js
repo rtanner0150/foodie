@@ -1,6 +1,7 @@
 let urlRecipeId = urlParams.get('id');
 let ingredientCount = 0;
 document.getElementById('addIngredient').addEventListener('click', addIngredientRow);
+let savedImagePath = '';
 
 getRecipeById(urlRecipeId).then((recipe) => {
   document.getElementById('recipeTitle').value = recipe.title;
@@ -14,7 +15,15 @@ getRecipeById(urlRecipeId).then((recipe) => {
     document.getElementById('substitutions' + i).value = recipe.ingredients[i].substitutions;
     addIngredientRow();
   }
+  savedImagePath = recipe.picture;
 });
+
+
+
+//for later- when submitting edited recipe, if no file input, set as prev value
+// if (document.getElementById('image').files[0] === undefined){
+//   recipe.picture = recipe.picture
+// }
 
 // document.getElementById('create-recipe').addEventListener('click', () => {
 //   let title = document.getElementById('recipeTitle').value;
