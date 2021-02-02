@@ -1,3 +1,8 @@
+//global variables
+const urlParams = new URLSearchParams(window.location.search);
+// const taskId = urlParams.get('id');
+
+//global CRUD functions
 async function getRecipes(){
     let requestOptions = {
         method: 'GET',
@@ -5,6 +10,20 @@ async function getRecipes(){
     }
     
     const response = await fetch('/recipes', requestOptions);
+    const body = await response.json();
+    if (response.status != 200){
+        throw Error(body.message);
+    }
+    return body;
+}
+
+async function getRecipeById(recipeId){
+    let requestOptions = {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+    }
+
+    const response = await fetch('/recipes/' + recipeId, requestOptions);
     const body = await response.json();
     if (response.status != 200){
         throw Error(body.message);
@@ -81,4 +100,16 @@ async function handleImageUpload(imageInput){
         throw Error(body.message);
     }
     return body.path;
+}
+
+//global miscellaneous functions
+function addIngredientRow(){
+    ingredientCount++;
+    let ingRow = document.createElement('div');
+    ingRow.setAttribute('class', 'ingredientRow');
+    ingRow.setAttribute('id', 'ingRow' + ingredientCount);
+    document.getElementById('ingredientWrapper').append(ingRow);
+    ingRow.innerHTML = `<input type="text" id="ingredient${ingredientCount}" name="ingredient" placeholder="eggs">
+        <input type="text" id="amount${ingredientCount}" name="amount" placeholder="2 large">
+        <input type="text" id="substitutions${ingredientCount}" name="substitutions" placeholder="12 oz of applesauce">`;
 }
