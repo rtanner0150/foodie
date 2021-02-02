@@ -26,22 +26,57 @@
         <br>
         <a href="profile.html">profile</a>
         <br>
-        <a href="pantry.html">pantry</a>
-        <br>
+        <!-- <a href="pantry.html">pantry</a>
+        <br> -->
         <a href="Create-Recipe.index.html">create</a>
         <br>
         <a href="login.html">login</a>
       </div>
 
       <!-- end of template code, rest of code goes below -->
+     
+     
+      <br> <br>
+    
+     <div data-toggle="button" class="container search-toggle btn-group-toggle"> <button name="search-toggle" class= "btn btn-secondary active" type="button">view recipes created by ${username}</button>  <button name="search-toggle" class ="btn btn-secondary" type="button">view recipes favorited by ${username}</button> 
+    </div>
+     <br> 
+     <div class="container">
+       <div class="row">
+        <div class="col-9">
+          <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">[recipe title]</h4>
+          <p class="card-text">[short recipe description]</p>
+          <a href="#" class="btn btn-info">view recipe</a>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">posted by: <a class="blackText" href="...">[user]</a> on [date]</small>
+        </div>
+        </div>
+        
+      </div>
+      
+      <div class="col-3">
+        <div class="profileBox">
+          <img class="profilePicture" src="img/yckrGpRei.png" alt=""> 
+        <h3>$(username)</h3>
+        <h5>some more text?</h5>
+      </div>
+    </div>
+    </div>
+    </div>
 
-      <h2>
+    <!-- <h2>
         welcome to the <strong>profile page,</strong> we are currently in the process of working on everything,
          so please bear with us as we work out all of the kinks!
     </h2>
     <div>
         <img src="img/pngfind.com-polar-bear-png-442874.png" alt="bear">
-    </div>
+    </div> -->
 
+
+    <script src="js/data.js"></script>
+    <script src="js/profile.js"></script>
 </body>
 </html>
