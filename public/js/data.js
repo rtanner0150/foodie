@@ -85,6 +85,31 @@ async function createRecipe(title, ingredients, times, directions, summary, imag
     `;
 }
 
+async function updateRecipe(id, title, ingredients, times, directions, summary, image, tags){
+    let recipe = {
+        title: title,
+        ingredients: ingredients,
+        prep_cook_time: times,
+        directions: directions,
+        summary: summary,
+        picture: image,
+        tags: tags
+    }
+    let requestOptions = {
+        method: 'PUT',
+        body: JSON.stringify(recipe),
+        headers: {'Content-Type': 'application/json'}
+    }
+
+    const response = await fetch('/recipes/' + id, requestOptions);
+    if (response.status != 200){
+        throw Error('Recipe not updated');
+    }
+    return `Recipe "${recipe.title}" updated!
+    ${recipe}
+    `;
+}
+
 //https://flaviocopes.com/file-upload-using-ajax/
 async function handleImageUpload(imageInput){
     const files = imageInput.files;
@@ -113,3 +138,46 @@ function addIngredientRow(){
         <input type="text" id="amount${ingredientCount}" name="amount" placeholder="2 large">
         <input type="text" id="substitutions${ingredientCount}" name="substitutions" placeholder="12 oz of applesauce">`;
 }
+
+function uploadRecipe(isEditing){
+    let title = document.getElementById('recipeTitle').value;
+    let times = document.getElementById('times').value;
+    let summary = document.getElementById('summary').value;
+    let directions = document.querySelector('#editor .ql-editor').innerHTML;
+    let tags = document.getElementById('tags').value;
+    let ingredients = [];
+    for (let i = 0; i < document.querySelectorAll('.ingredientRow').length; i++){
+      let ingredient = {
+        name: document.getElementById('ingredient' + i).value,
+        amount: document.getElementById('amount' + i).value,
+        substitutions: document.getElementById('substitutions' + i).value
+      }
+      ingredients.push(ingredient);
+    }
+    if (isEditing && document.getElementById('image').files[0] === undefined){
+      let imagePath = savedImagePath;
+      updateRecipe(urlRecipeId, title, ingredients, times, directions, summary, imagePath, tags).then((result) => {
+        console.log(result);
+      }).catch((error) => {
+        console.log(error);
+      });
+    } else if (isEditing && document.getElementById('image').files[0]){
+      handleImageUpload(document.getElementById('image')).then((imagePath) => {
+        console.log('imagePath: ' + imagePath);
+        updateRecipe(urlRecipeId, title, ingredients, times, directions, summary, imagePath, tags).then((result) => {
+          console.log(result);
+        }).catch((error) => {
+          console.log(error);
+        });
+      });
+    } else {
+      handleImageUpload(document.getElementById('image')).then((imagePath) => {
+        console.log('imagePath: ' + imagePath);
+        createRecipe(title, ingredients, times, directions, summary, imagePath, tags).then((result) => {
+          console.log(result);
+        }).catch((error) => {
+          console.log(error);
+        });
+      });
+    }
+  }

@@ -18,6 +18,10 @@ getRecipeById(urlRecipeId).then((recipe) => {
   savedImagePath = recipe.picture;
 });
 
+document.getElementById('edit-recipe').addEventListener('click', () => {
+  uploadRecipe(true);
+});
+
 
 
 //for later- when submitting edited recipe, if no file input, set as prev value
