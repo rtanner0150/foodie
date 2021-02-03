@@ -13,7 +13,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
   <!--the main javascript file is below/change the file below for correct JS routing-->
-  <script src="/templateDraft.js"></script>
 </head>
 <body>
     <div class="header">
@@ -43,8 +42,8 @@
      <br> 
      <div class="container">
        <div class="row">
-        <div class="col-9">
-          <div class="card">
+        <div class="col-9" id="recipeContainer">
+          <!-- <div class="card">
         <div class="card-body">
           <h4 class="card-title">[recipe title]</h4>
           <p class="card-text">[short recipe description]</p>
@@ -53,15 +52,15 @@
         <div class="card-footer">
           <small class="text-muted">posted by: <a class="blackText" href="...">[user]</a> on [date]</small>
         </div>
-        </div>
+        </div> -->
         
       </div>
       
       <div class="col-3">
         <div class="profileBox">
-          <img class="profilePicture" src="img/yckrGpRei.png" alt=""> 
-        <h3>$(username)</h3>
-        <h5>some more text?</h5>
+          <img class="profilePicture" id="profilePicture" src="img/yckrGpRei.png" alt=""> 
+        <h3 id="username">$(username)</h3>
+        <h5>recipes created: <span id="recipeCount">0</span></h5>
       </div>
     </div>
     </div>

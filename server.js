@@ -102,6 +102,13 @@ app.get('/recipes/search/:on/:query', (request, response) => {
         response.send(recipes);
     })
 });
+//get specific user's recpies for user's profile page
+app.get('/recipes/user/:id', (request, response) => {
+    Recipe.find({created_by : request.params.id}, function(err, recipes){
+        if (err) return console.error(err);
+        response.send(recipes);
+    })
+})
 //search recipes by ingredient
 // app.get('/recipes/search_ingredient/:query', (request, response) => {
 //     var regex = new RegExp(request.params.query, 'gi');
