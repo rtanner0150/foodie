@@ -13,7 +13,7 @@ document.getElementById('search-submit').addEventListener('click', () => {
     
 });
 
-function createSearchResultsHtml(title, summary, username, date){
+function createSearchResultsHtml(title, summary, username, date, id){
     return `
     <div class="container card">
         <div class="card-body">
@@ -22,7 +22,7 @@ function createSearchResultsHtml(title, summary, username, date){
             <a href="#" class="btn btn-info">recipe link</a>
         </div>
         <div class="card-footer">
-            <small>posted by: <a class="text-muted" href="...">${username}</a> on ${date}</small>
+            <small>posted by: <a class="text-muted" href="profile.html?userID=${id}">${username}</a> on ${date}</small>
         </div>
     </div>
     `
@@ -32,7 +32,7 @@ function populateSearchResults(recipes){
     recipes.forEach(recipe => {
         getSpecificUser(recipe.created_by).then((user) => {
             let createdAt = new Date(recipe.createdAt);
-            searchResultsContainer.innerHTML += createSearchResultsHtml(recipe.title, recipe.summary, user.username, createdAt.toDateString());
+            searchResultsContainer.innerHTML += createSearchResultsHtml(recipe.title, recipe.summary, user.username, createdAt.toDateString(), recipe.created_by);
         })
     })
 }
