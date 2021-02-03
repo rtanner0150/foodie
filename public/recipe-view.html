@@ -12,8 +12,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-  <!--the main javascript file is below/change the file below for correct JS routing-->
-  <script src="/templateDraft.js"></script>
 </head>
 <body>
     <div class="header">
@@ -25,8 +23,8 @@
       <a href="search.html">search</a>
       <br>
       <a href="profile.html">profile</a>
-      <br>
-      <a href="pantry.html">pantry</a>
+      <!-- <br>
+      <a href="pantry.html">pantry</a> -->
       <br>
       <a href="Create-Recipe.index.html">create</a>
       <br>
@@ -36,12 +34,13 @@
 
       <!-- end of template code, rest of code goes below -->
       <br> <br>
-<div class="container recipeView">
+  <div class="container recipeView">
       <br>
-   <h1>[recipe title]</h1>
+      <div id="recipeView">
+        <!-- <h1>[recipe title]</h1>
         <p>[short description of recipe]</p>
-        <p>[prep time | cook time]</p>
-        
+        <p>[prep time | cook time]</p> -->
+      </div>
         <div class="tab">
           <button class="tablinks" id="activeTab" onclick="openTab(event, 'ingredient')">ingredients</button>
           <button class="tablinks" onclick="openTab(event, 'directions')">directions</button>
@@ -51,17 +50,17 @@
         
         <div id="ingredient" class="tabcontent">
           <h3>ingredients</h3>
-          <p>[ingredients go here]</p>
+          <!-- <p>[ingredients go here]</p> -->
         </div>
         
         <div id="directions" class="tabcontent">
           <h3>directions</h3>
-          <p>[directions go here]</p> 
+          <!-- <p>[directions go here]</p>  -->
         </div>
         
         <div id="substitutions" class="tabcontent">
           <h3>substitutions</h3>
-          <p>[substitutions go here]</p>
+          <!-- <p>[substitutions go here]</p> -->
         </div>
         
         <!-- <div id="story" class="tabcontent">
@@ -89,12 +88,7 @@
         // Get the element with id="ingredient" and click on it
     document.getElementById("activeTab").click();
         </script>
-
-           
-
-        
-
-
-
+        <script src="js/data.js"></script>
+        <script src="js/view.js"></script>
 </body>
 </html>

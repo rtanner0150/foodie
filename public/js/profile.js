@@ -11,6 +11,7 @@ getSpecificUser(userID).then((user) => {
 });
 
 getUserRecipes(userID).then((recipes) => {
+    document.getElementById('recipeCount').innerHTML = recipes.length;
     let recipeContainer = document.getElementById('recipeContainer');
     for (let i = 0; i < recipes.length; i++){
         recipeContainer.innerHTML += `
@@ -18,7 +19,7 @@ getUserRecipes(userID).then((recipes) => {
             <div class="card-body">
                 <h4 class="card-title">${recipes[i].title}</h4>
                 <p class="card-text">${recipes[i].summary}</p>
-                <a href="#" class="btn btn-info">view recipe</a>
+                <a href="recipe-view.html?id=${recipes[i]._id}" class="btn btn-info">view recipe</a>
             </div>
             <div class="card-footer">
                 <small class="text-muted">posted on: ${new Date(recipes[i].createdAt).toDateString()}</small>
