@@ -13,16 +13,16 @@ document.getElementById('search-submit').addEventListener('click', () => {
     
 });
 
-function createSearchResultsHtml(title, summary, username, date, id){
+function createSearchResultsHtml(title, summary, username, date, userId, recipeId){
     return `
     <div class="container card">
         <div class="card-body">
             <h4 class="card-title">${title}</h4>
             <p class="card-text">${summary}</p>
-            <a href="#" class="btn btn-info">recipe link</a>
+            <a href="recipe-view.html?id=${recipeId}" class="btn btn-info">recipe link</a>
         </div>
         <div class="card-footer">
-            <small>posted by: <a class="text-muted" href="profile.html?userID=${id}">${username}</a> on ${date}</small>
+            <small>posted by: <a class="text-muted" href="profile.html?userID=${userId}">${username}</a> on ${date}</small>
         </div>
     </div>
     `
@@ -32,7 +32,7 @@ function populateSearchResults(recipes){
     recipes.forEach(recipe => {
         getSpecificUser(recipe.created_by).then((user) => {
             let createdAt = new Date(recipe.createdAt);
-            searchResultsContainer.innerHTML += createSearchResultsHtml(recipe.title, recipe.summary, user.username, createdAt.toDateString(), recipe.created_by);
+            searchResultsContainer.innerHTML += createSearchResultsHtml(recipe.title, recipe.summary, user.username, createdAt.toDateString(), recipe.created_by, recipe._id);
         })
     })
 }
