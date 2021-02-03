@@ -45,6 +45,20 @@ async function getSpecificUser(id){
     return body;
 }
 
+async function getUserRecipes(id){
+    let requestOptions = {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+    }
+
+    const response = await fetch('/recipes/user/' + id, requestOptions);
+    const body = await response.json();
+    if (response.status != 200) {
+        throw Error(body.message);
+    }
+    return body;
+}
+
 async function searchRecipes(query, on){
     let requestOptions = {
         method: 'GET',
