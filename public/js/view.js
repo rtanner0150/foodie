@@ -1,11 +1,27 @@
 let urlRecipeId = urlParams.get('id');
 
-getRecipeById(urlRecipeId).then((recipe) => {
+getRecipeById(urlRecipeId).then(async (recipe) => {
     console.log(recipe);
+    let userName = ''; 
+    await getSpecificUser(recipe.created_by).then((user) => {
+        userName = user.username;
+    });
+    console.log(userName);
     document.getElementById('recipeView').innerHTML = `
-    <h1>${recipe.title}</h1>
-    <p>${recipe.summary}</p>
-    <p>${recipe.prep_cook_time}</p>
+    <div class="row">
+        <div class="col-8">
+            <h1>${recipe.title}</h1>
+            <p><em>${recipe.tags}</em></p>
+            <p>${recipe.summary}</p>
+            <p>${recipe.prep_cook_time}</p>
+        </div>
+        <div class="col-4">
+            <div class="recipeImage">
+                <img src="${recipe.picture}">
+            </div>
+            <p>posted by: <a class="text-muted" href="profile.html?userID=${recipe.created_by}">${userName}</a>
+        </div>
+    </div>
     `;
 
     let ingredientsContainer = document.getElementById('ingredient');

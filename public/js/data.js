@@ -94,9 +94,7 @@ async function createRecipe(title, ingredients, times, directions, summary, imag
     if (response.status != 201){
         throw Error('Recipe not created');
     }
-    return `Recipe "${recipe.title}" created!
-    ${recipe}
-    `;
+    return `Recipe "${recipe.title}" created!`;
 }
 
 async function updateRecipe(id, title, ingredients, times, directions, summary, image, tags){
@@ -119,9 +117,7 @@ async function updateRecipe(id, title, ingredients, times, directions, summary, 
     if (response.status != 200){
         throw Error('Recipe not updated');
     }
-    return `Recipe "${recipe.title}" updated!
-    ${recipe}
-    `;
+    return `Recipe "${recipe.title}" updated!`;
 }
 
 //https://flaviocopes.com/file-upload-using-ajax/
@@ -171,26 +167,26 @@ function uploadRecipe(isEditing){
     if (isEditing && document.getElementById('image').files[0] === undefined){
       let imagePath = savedImagePath;
       updateRecipe(urlRecipeId, title, ingredients, times, directions, summary, imagePath, tags).then((result) => {
-        console.log(result);
+        document.getElementById('output').innerHTML = result;
       }).catch((error) => {
-        console.log(error);
+        document.getElementById('output').innerHTML = error;
       });
     } else if (isEditing && document.getElementById('image').files[0]){
       handleImageUpload(document.getElementById('image')).then((imagePath) => {
         console.log('imagePath: ' + imagePath);
         updateRecipe(urlRecipeId, title, ingredients, times, directions, summary, imagePath, tags).then((result) => {
-          console.log(result);
+            document.getElementById('output').innerHTML = result;
         }).catch((error) => {
-          console.log(error);
+            document.getElementById('output').innerHTML = error;
         });
       });
     } else {
       handleImageUpload(document.getElementById('image')).then((imagePath) => {
         console.log('imagePath: ' + imagePath);
         createRecipe(title, ingredients, times, directions, summary, imagePath, tags).then((result) => {
-          console.log(result);
+            document.getElementById('output').innerHTML = result;
         }).catch((error) => {
-          console.log(error);
+            document.getElementById('output').innerHTML = error;
         });
       });
     }
