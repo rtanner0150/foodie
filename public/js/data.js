@@ -149,6 +149,13 @@ function addIngredientRow(){
         <input type="text" id="substitutions${ingredientCount}" name="substitutions" placeholder="12 oz of applesauce">`;
 }
 
+function removeIngredientRow(){
+    if (ingredientCount > 0){
+        document.getElementById('ingRow' + ingredientCount).remove();
+        ingredientCount--;
+    }
+}
+
 function uploadRecipe(isEditing){
     let title = document.getElementById('recipeTitle').value;
     let times = document.getElementById('times').value;
