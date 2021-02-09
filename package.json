@@ -18,7 +18,14 @@
   },
   "homepage": "https://github.com/rtanner0150/foodie#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
-    "nodemon": "^2.0.6"
+    "mongoose": "^5.11.15",
+    "nodemon": "^2.0.6",
+    "path": "^0.12.7"
+  },
+  "engines": {
+    "node": "15.2.1"
   }
 }
