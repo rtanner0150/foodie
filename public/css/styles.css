@@ -71,7 +71,7 @@ a {
   position: relative;
 }
 
-#ingredientWrapper button {
+#ingredientWrapper .buttons {
   position: absolute;
   bottom: 0;
 }

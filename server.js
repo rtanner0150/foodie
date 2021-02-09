@@ -31,6 +31,11 @@ app.listen(port, () => {
     console.log('The Express server is running at port ' + port);
 });
 
+//get root
+app.get('/', (request, response) => {
+    response.redirect('feed-main.html');
+})
+
 //RECIPES
 //get all recipes
 app.get('/recipes', (request, response) => {

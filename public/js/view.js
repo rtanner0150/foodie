@@ -7,11 +7,16 @@ getRecipeById(urlRecipeId).then(async (recipe) => {
         userName = user.username;
     });
     console.log(userName);
+    let tags = '';
+    let tagsArr = recipe.tags.split(' ');
+    for (let i = 0; i < tagsArr.length; i++){
+        tags += `<a class="text-muted" href="search.html?tags=${tagsArr[i]}">${tagsArr[i]}</a> `
+    }
     document.getElementById('recipeView').innerHTML = `
     <div class="row">
         <div class="col-8">
             <h1>${recipe.title}</h1>
-            <p><em>${recipe.tags}</em></p>
+            <p><em>${tags}</em></p>
             <p>${recipe.summary}</p>
             <p>${recipe.prep_cook_time}</p>
         </div>

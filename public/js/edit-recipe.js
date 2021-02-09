@@ -1,6 +1,7 @@
 let urlRecipeId = urlParams.get('id');
 let ingredientCount = 0;
 document.getElementById('addIngredient').addEventListener('click', addIngredientRow);
+document.getElementById('removeIngredient').addEventListener('click', removeIngredientRow);
 let savedImagePath = '';
 
 getRecipeById(urlRecipeId).then((recipe) => {
