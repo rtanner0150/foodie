@@ -144,9 +144,9 @@ function addIngredientRow(){
     ingRow.setAttribute('class', 'ingredientRow');
     ingRow.setAttribute('id', 'ingRow' + ingredientCount);
     document.getElementById('ingredientWrapper').append(ingRow);
-    ingRow.innerHTML = `<input type="text" id="ingredient${ingredientCount}" name="ingredient" placeholder="eggs">
-        <input type="text" id="amount${ingredientCount}" name="amount" placeholder="2 large">
-        <input type="text" id="substitutions${ingredientCount}" name="substitutions" placeholder="12 oz of applesauce">`;
+    ingRow.innerHTML = `<input type="text" id="ingredient${ingredientCount}" name="ingredient" placeholder="name">
+        <input type="text" id="amount${ingredientCount}" name="amount" placeholder="amount">
+        <input type="text" id="substitutions${ingredientCount}" name="substitutions" placeholder="substitutions?">`;
 }
 
 function removeIngredientRow(){

@@ -8,9 +8,11 @@ getRecipeById(urlRecipeId).then(async (recipe) => {
     });
     console.log(userName);
     let tags = '';
-    let tagsArr = recipe.tags.split(' ');
-    for (let i = 0; i < tagsArr.length; i++){
-        tags += `<a class="text-muted" href="search.html?tags=${tagsArr[i]}">${tagsArr[i]}</a> `
+    if (recipe.tags != null){
+        let tagsArr = recipe.tags.split(' ');
+        for (let i = 0; i < tagsArr.length; i++){
+            tags += `<a class="text-muted" href="search.html?tags=${tagsArr[i]}">${tagsArr[i]}</a> `
+        }
     }
     document.getElementById('recipeView').innerHTML = `
     <div class="row">
