@@ -157,3 +157,13 @@ a {
 .search-input .btn{color:#fff; background-color:#AD102F; border-color:#AD1};
 .search-input .btn:hover{background-color:#dc3545;}
 .search-input input{height:38px; vertical-align:middle;}
+
+.sidenav form button{background: none;
+  border: none;
+  width:100%;
+  padding: 6px 8px 6px 8px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #ffffff;
+  display: block;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";}

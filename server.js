@@ -1,7 +1,16 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
+
 const mongoose = require('mongoose');
 const connectionString = 'mongodb+srv://foodieDB:OnionsAndGarlic1@foodiecluster.wtnzu.mongodb.net/FoodieDatabase?retryWrites=true&w=majority';
 const express = require('express');
 const app = express();
+const bcrypt = require('bcrypt')
+const passport = require('passport')
+const flash = require('express-flash')
+const session = require('express-session')
+const methodOverride = require('method-override')
 const path = require('path');
 const bodyParser = require('body-parser');
 const Recipe = require('./models/Recipe.js');
@@ -12,6 +21,13 @@ const fileupload = require('express-fileupload');
 const { allowedNodeEnvironmentFlags } = require('process');
 const { createCipher } = require('crypto');
 
+const initializePassport = require('./passport-config')
+initializePassport(
+  passport
+  //email => users.find(user => user.email === email),
+  //id => users.find(user => user.id === id)
+)
+
 let port = process.env.PORT || 3000;
 
 const dbCheck = mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
@@ -21,11 +37,23 @@ const dbCheck = mongoose.connect(connectionString, {useNewUrlParser: true, useUn
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
-
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use('/auth', requireAuth, express.static(path.join(__dirname, 'auth')));
+//app.use(checkAuthenticated, express.static(path.join(__dirname, 'public')));
+app.set('viewengine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-app.use(fileupload())
+app.use(fileupload());
+app.use(flash());
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/auth', [checkAuthenticated, express.static(path.join(__dirname, 'auth'))])
 
 app.listen(port, () => {
     console.log('The Express server is running at port ' + port);
@@ -33,7 +61,7 @@ app.listen(port, () => {
 
 //get root
 app.get('/', (request, response) => {
-    response.redirect('feed-main.html');
+    response.render('login.ejs');
 })
 
 //RECIPES
@@ -206,6 +234,69 @@ app.post('/saveImage', (request, response) => {
         response.writeHead(200, {
             'Content-Type': 'application/json'
         });
-        response.end(JSON.stringify({status: 'success', path: 'img/upload/' + fileName}))
+        response.end(JSON.stringify({status: 'success', path: '/img/upload/' + fileName}))
     })
+});
+
+//login functionality
+app.get('/register', checkNotAuthenticated, (req, res) => {
+    res.render('register.ejs')
+})
+app.post('/register', checkNotAuthenticated, async (req, res) => {
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10)
+    //   users.push({
+    //     id: Date.now().toString(),
+    //     name: req.body.name,
+    //     email: req.body.email,
+    //     password: hashedPassword
+    //   })
+      let user = new User({
+          username: req.body.name,
+          email: req.body.email,
+          password: hashedPassword,
+          profile_pic: null
+      });
+      user.save();
+      res.redirect('/login')
+    } catch {
+      res.redirect('/register')
+    }
+})
+app.get('/login', checkNotAuthenticated, (req, res) => {
+    res.render('login.ejs')
+})
+app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+    successRedirect: '/feed',
+    failureRedirect: '/login',
+    failureFlash: true
+}))
+app.delete('/logout', (req, res) => {
+    req.logOut()
+    res.redirect('/login')
+  })
+
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+    res.redirect('/login')
+}
+
+function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return res.redirect('/feed')
+    }
+    next()
+}
+
+app.get('/feed', checkAuthenticated, async (request, response) => {
+    console.log(await request.user);
+    response.redirect('auth/feed-main.html');
+})
+
+app.get('/loggedInUser', async (request, response) => {
+    let loggedInUser = await request.user;
+    console.log(loggedInUser);
+    response.send(loggedInUser);
 })

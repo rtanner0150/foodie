@@ -45,6 +45,20 @@ async function getSpecificUser(id){
     return body;
 }
 
+async function getLoggedInUser(){
+    let requestOptions = {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+    }
+
+    const response = await fetch('/loggedInUser', requestOptions);
+    const body = await response.json();
+    if (response.status != 200){
+        throw Error(body.message);
+    }
+    return body;
+}
+
 async function getUserRecipes(id){
     let requestOptions = {
         method: 'GET',
@@ -74,6 +88,11 @@ async function searchRecipes(query, on){
 }
 
 async function createRecipe(title, ingredients, times, directions, summary, image, tags){
+    let loggedInId = '';
+    await getLoggedInUser().then((user) => {
+        loggedInId = user[0]._id;
+        console.log('loggedInId: ' + loggedInId);
+    });
     let recipe = {
         title: title,
         ingredients: ingredients,
@@ -82,7 +101,7 @@ async function createRecipe(title, ingredients, times, directions, summary, imag
         summary: summary,
         picture: image,
         tags: tags,
-        created_by: '6000c2eed43991ec6f6e2487'
+        created_by: loggedInId
     }
     let requestOptions = {
         method: 'POST',

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>foodie</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">   
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="header">
+        <h1><a href="feed-main.html"><i class="fas fa-utensils"></i> foodie</a> </h1>
+    </div>
+    <div class="sidenav">
+        <a href="feed-main.html">feed</a>
+        <br>
+        <a href="search.html">search</a>
+        <br>
+        <a href="profile.html">profile</a>
+        <!-- <br>
+        <a href="pantry.html">pantry</a> -->
+        <br>
+        <a href="Create-Recipe.html">create</a>
+        <br>
+        <form action="/logout?_method=DELETE" method="POST">
+          <button type="submit">log out</button>
+        </form>
+      </div>
+
+      <!-- end of template code, rest of code goes below -->
+
+      <div class="container search-page">
+          <h2>Search for Recipes</h2>
+          <div class="search-toggle btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-secondary active">
+                <input type="radio" name="search-toggle" id="title" value="title" checked> Search by Title
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="search-toggle" id="ingredients" value="ingredients"> Search by Ingredients
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="search-toggle" id="tags" value="tags">Search by Tags
+              </label>
+          </div>
+          <div class="search-input">
+              <input type="text" name="search-input" id="search-input" placeholder="Search conditions go here">
+              <button type="submit" class="btn" id="search-submit">Search</button>
+          </div>
+          <hr>
+          <div class="search-results" id="search-results">
+              <h3>Search Results</h3>
+
+          </div>
+      </div>
+
+ <script src="/js/data.js"></script>
+ <script src="/js/search.js"></script>
+
+</body>
+</html>

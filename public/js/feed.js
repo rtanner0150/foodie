@@ -1,3 +1,7 @@
+getLoggedInUser().then((user) => {
+    document.getElementById('welcome').innerHTML = `welcome, ${user[0].username}!`;
+})
+
 getRecipes().then((recipes) => {
     let feedContainer = document.getElementById('feedContainer');
     recipes.sort((a,b) => {
@@ -10,18 +14,20 @@ getRecipes().then((recipes) => {
         }
     });
     for (let i = 0; i < recipes.length; i++){
-        feedContainer.innerHTML += `
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">${recipes[i].title}</h4>
-                <p class="card-text">${recipes[i].summary}</p>
-                <a href="recipe-view.html?id=${recipes[i]._id}" class="btn btn-info">view recipe</a>
+        getSpecificUser(recipes[i].created_by).then((user) => {
+            feedContainer.innerHTML += `
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">${recipes[i].title}</h4>
+                    <p class="card-text">${recipes[i].summary}</p>
+                    <a href="recipe-view.html?id=${recipes[i]._id}" class="btn btn-info">view recipe</a>
+                </div>
+                <div class="card-footer">
+                <small>posted by: <a class="text-muted" href="profile.html?userID=${recipes[i].created_by}">${user.username}</a> on ${new Date(recipes[i].createdAt).toDateString()}</small>
+                </div>
             </div>
-            <div class="card-footer">
-            <small>posted by: <a class="text-muted" href="profile.html?userID=${recipes[i].created_by}">${'username'}</a> on ${new Date(recipes[i].createdAt).toDateString()}</small>
-            </div>
-        </div>
-        <br>
-        `
+            <br>
+            `
+        })
     }
 })
