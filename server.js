@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const connectionString = 'mongodb+srv://foodieDB:OnionsAndGarlic1@foodiecluster.wtnzu.mongodb.net/FoodieDatabase?retryWrites=true&w=majority';
 const express = require('express');
 const app = express();
-const bcrypt = require('server.js').bcrypt;
+const bcrypt = require('./server.js').bcrypt;
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
